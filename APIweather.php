@@ -1,5 +1,5 @@
 <?php
-$apiKey = "0c24961ef6aab45d492cd8b8f77b1f23";
+$apiKey = getenv('OPENWEATHERMAP_API_KEY');
 
 
 $city = readline("Enter the city name: ");
