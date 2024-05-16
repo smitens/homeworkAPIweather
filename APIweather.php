@@ -12,16 +12,16 @@ $directions = ['north', 'northeast', 'east', 'southeast', 'south', 'southwest', 
 
 if ($response !== false) {
 
-    $weatherData = json_decode($response, true);
+    $weatherData = json_decode($response);
 
-    if (isset($weatherData['main']['temp']) && isset($weatherData['main']['feels_like'])
-        && isset($weatherData['weather'][0]['description']) && isset($weatherData['wind']['speed']) && isset($weatherData['wind']['deg'])) {
-        $temperature = $weatherData['main']['temp'];
-        $feelsLikeTemperature = $weatherData['main']['feels_like'];
-        $windDirection = $weatherData['wind']['deg'];
+    if (isset($weatherData->main->temp) && isset($weatherData->main->feels_like)
+        && isset($weatherData->weather[0] ->description) && isset($weatherData->wind->speed) && isset($weatherData->wind->deg)) {
+        $temperature = $weatherData->main->temp;
+        $feelsLikeTemperature = $weatherData->main->feels_like;
+        $windDirection = $weatherData->wind->deg;
         $degrees = ((round($windDirection * 8 / 360, 0) + 8) % 8);
-        $windSpeed = $weatherData['wind']['speed'];
-        $weatherDescription = $weatherData['weather'][0]['description'];
+        $windSpeed = $weatherData->wind->speed;
+        $weatherDescription = $weatherData->weather[0]->description;
 
         echo "Current weather conditions in $city, $country are described as $weatherDescription.\n";
         echo "Temperature is: " . round($temperature, 1) . "°C, but it feels like " . round($feelsLikeTemperature, 1)."°C\n";
